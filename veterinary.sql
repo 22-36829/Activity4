@@ -162,3 +162,8 @@ from animals;
 -- feat/list-total-sales
 SELECT SUM(total_amount) AS total_sales
 FROM invoices
+
+--feat/list-total-appoinment-owner-maria
+SELECT COUNT(*) AS total_appointments
+FROM appointment
+WHERE animalid IN (SELECT animalid FROM owners WHERE ofirstname = 'Maria');
