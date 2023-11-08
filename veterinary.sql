@@ -147,6 +147,6 @@ CREATE TABLE medicalrecords(
 ALTER TABLE owners
 ADD COLUMN registereddate DATE;
 
--- feat/rename-column-paymenttime
-ALTER TABLE invoices
-RENAME COLUMN paymentdate TO paymenttime;
+--  feat/remove-appointment-simba
+delete from appointments
+where animal_id = 8;
