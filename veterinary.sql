@@ -129,3 +129,16 @@ VALUES
 (8, 8, 150.00, '16:30:00'),
 (9, 9, 60.00, '14:45:00'),
 (10, 10, 40.00, '11:30:00');
+
+-- feat/create-table-medicalrecords
+CREATE TABLE medicalrecords(
+	recordid INT PRIMARY KEY,
+	recorddate TIMESTAMP,
+	diagnosis VARCHAR(1000) NOT NULL,
+	prescription VARCHAR(2000) NOT NULL,
+	notes VARCHAR(2000) NOT NULL,
+	animalid INT,
+	doctorid INT,
+	foreign key (animalid) references animals(animalid),
+	foreign key (doctorid) references doctors(doctorid)
+);
