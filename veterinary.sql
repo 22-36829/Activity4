@@ -75,5 +75,5 @@ VALUES
     (6, 'Isabela', 'Reyes', '111 Acacia St, Pasig', '999-000-1111', isabel@example.com'),
     (7, 'Luis', 'Torres', '555 Maple St, Mandaluyong', '123-555-7777', 'luis@example.com'),
     (8, 'Carmen', 'Fernandez', '222 Birch St, Taguig', '333-222-1111', 'carmen@example.com'),
-    (9, 'Pedro', 'Santillian, '888 Spruce St, Bacolod', '888-777-3333', 'pedro@example.com'),
+    (9, 'Pedro', 'Santillian, 888 Spruce St, Bacolod', '888-777-3333', 'pedro@example.com'),
     (10, 'Sofia', 'Villianueva', '777 Walnut St, Iloilo', '111-999-3333', 'sofia@example.com');
