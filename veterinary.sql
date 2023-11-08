@@ -154,3 +154,7 @@ where animal_id = 8;
 -- feat/modify-lastname-dr-reyes-gonzales
 SET dlast_name = 'Reyes Gonzales'
 WHERE dfirst_name= 'Sofia'; 
+
+-- feat/list-species-catered
+select distinct species
+from animals;
