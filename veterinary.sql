@@ -167,3 +167,11 @@ FROM invoices
 SELECT COUNT(*) AS total_appointments
 FROM appointment
 WHERE animalid IN (SELECT animalid FROM owners WHERE ofirstname = 'Maria');
+
+--feat/list-animal-w-most-appoinment
+SELECT a.animalid, a.name, COUNT(*) AS appointment_count
+FROM animal a
+JOIN appointment ap ON a.animalid = ap.animalid
+GROUP BY a.animalid, a.name
+ORDER BY appointment_count DESC
+LIMIT 1;
