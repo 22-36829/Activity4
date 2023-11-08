@@ -147,31 +147,54 @@ CREATE TABLE medicalrecords(
 ALTER TABLE owners
 ADD COLUMN registereddate DATE;
 
+ALTER TABLE invoices
+RENAME COLUMN paymentdate TO paymenttime;
+
 --  feat/remove-appointment-simba
-delete from appointments
-where animal_id = 8;
+DELETE FROM invoices
+WHERE appointid = (
+	SELECT appointid 
+	FROM appointments 
+	WHERE animalid = (
+		SELECT animalid 
+		FROM animals WHERE name = 'Simba'));
+
+DELETE FROM appointments
+WHERE animalid = (
+	SELECT animalid 
+	FROM animals WHERE name = 'Simba');
 
 -- feat/modify-lastname-dr-reyes-gonzales
-SET dlast_name = 'Reyes Gonzales'
-WHERE dfirst_name= 'Sofia'; 
+UPDATE doctors
+SET dlastname = 'Reyes-Gonzales'
+WHERE dfirstname = 'Dr. Sofia';
 
 -- feat/list-species-catered
-select distinct species
-from animals;
+SELECT DISTINCT species
+FROM animals;
 
 -- feat/list-total-sales
-SELECT SUM(total_amount) AS total_sales
-FROM invoices
+SELECT SUM(totalamount) AS total_sales
+FROM invoices;
 
---feat/list-total-appoinment-owner-maria
+-- feat/list-total-appoinment-owner-maria 
 SELECT COUNT(*) AS total_appointments
-FROM appointment
-WHERE animalid IN (SELECT animalid FROM owners WHERE ofirstname = 'Maria');
+FROM appointments
+WHERE animalid IN (
+    SELECT animalid
+    FROM animals
+    WHERE ownerid = (
+        SELECT ownerid
+        FROM owners
+        WHERE ofirstname = 'Maria'
+    )
+);
 
---feat/list-animal-w-most-appoinment
+-- feat/list-animal-w-most-appoinment
 SELECT a.animalid, a.name, COUNT(*) AS appointment_count
-FROM animal a
-JOIN appointment ap ON a.animalid = ap.animalid
+FROM animals a
+JOIN appointments ap 
+	ON a.animalid = ap.animalid
 GROUP BY a.animalid, a.name
 ORDER BY appointment_count DESC
 LIMIT 1;
