@@ -142,3 +142,7 @@ CREATE TABLE medicalrecords(
 	foreign key (animalid) references animals(animalid),
 	foreign key (doctorid) references doctors(doctorid)
 );
+
+-- feat/add-column-registereddate
+ALTER TABLE owners
+ADD COLUMN registereddate DATE;
